@@ -98,17 +98,15 @@ em {
     background: url('../img/bg-wave.jpg') center center no-repeat scroll #295266;
 }
 
-.article {
+main {
     max-width: 33.778em;
     margin: 0 auto;
     padding: 1.111em;
     background-color: rgba(255, 255, 255, 0.5);
-    -webkit-border-radius: 0.444em;
-    -moz-border-radius: 0.444em;
     border-radius: 0.444em;
 }
 
-.footer {
+footer {
     max-width: 36.000em;
     margin: 0 auto;
     padding: 0;
@@ -123,7 +121,6 @@ em {
 
         .social-media li {
             display: inline-block;
-            /*margin-left: 0.278em;*/
         }
 
             .social-media a {
