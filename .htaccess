@@ -1,0 +1,17 @@
+Options +FollowSymlinks
+
+IndexIgnore *
+DirectoryIndex index.html index.php
+
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} ^(www\.)?malbehavers\.nl$ [NC]
+RewriteRule ^(.*)$ http://malbehavers.com/$1 [R=301,L]
+
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+php_flag display_errors on
