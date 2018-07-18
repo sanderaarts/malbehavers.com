@@ -109,7 +109,7 @@ ul {
         font: normal 10.9vw 'The Malbehavers', Arial, Helvetica, 'Liberation Sans',sans-serif;
         white-space: nowrap;
         text-align: center;
-        text-shadow: 0 0 40px rgba(255, 255, 255, .5);
+        text-shadow: 0 0 50px rgba(255, 255, 255, .25);
         margin: 0 -20px;
     }
 
