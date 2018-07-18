@@ -127,7 +127,7 @@ main {
         font-weight: 500;
     }
 
-    .line-up,
+    .line-up table,
     .line-up tbody,
     .line-up tr,
     .line-up th,
@@ -137,7 +137,7 @@ main {
         padding: 0;
     }
 
-    .line-up,
+    .line-up table,
     .line-up tr {
         margin-top: .333em;
     }
@@ -229,6 +229,10 @@ main {
         .line-up .instrument {
             float: right;
         }
+
+    .contact p {
+        margin-top: .333em;
+    }
 
 .site-footer {
     margin: 0 0 2rem;
