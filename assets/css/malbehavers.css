@@ -47,6 +47,11 @@ h2 {
     font-weight: 700;
 }
 
+h3 {
+    font-size: 1.25em;
+    font-weight: 700;
+}
+
 a {
     color: #295266;
     text-decoration: none;
@@ -58,6 +63,10 @@ a:active {
     color: #000;
     text-decoration: underline;
     outline: none;
+}
+
+abbr {
+    text-decoration: none;
 }
 
 em {
@@ -77,7 +86,10 @@ th,
 td,
 ul,
 ol,
-li {
+li,
+dl,
+dt,
+dd {
     padding: 0;
 }
 
@@ -85,13 +97,33 @@ table {
     border-collapse: collapse;
 }
 
-ul {
+ul,
+ol {
     list-style-type: none;
 }
 
 
 .small {
     font-size: .75em;
+}
+
+.link-map span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0 0 0 0);
+}
+
+.link-map svg {
+    vertical-align: text-bottom;
+    fill: currentColor;
+    width: auto;
+    height: 1.125em;
+    opacity: .9;
 }
 
 .site-wrapper {
@@ -127,6 +159,26 @@ main {
         font-weight: 500;
     }
 
+    .gigs > svg {
+        display: none;
+    }
+
+/* --- temp ----- */
+    .gigs h2,
+    .past-gigs {
+        display: none;
+    }
+
+    .upcoming-gigs h3 {
+        font-size: 1.5em;
+    }
+/* --- /temp ---- */
+
+    .gigs ol,
+    .gigs p,
+    .gigs dl,
+    .gigs dt,
+    .gigs dd,
     .line-up table,
     .line-up tbody,
     .line-up tr,
@@ -137,6 +189,55 @@ main {
         padding: 0;
     }
 
+    .gigs p,
+    .gigs dl,
+    .past-gigs {
+        font-size: 1rem;
+    }
+
+    .gigs dl {
+        margin-right: -.5em;
+    }
+
+        .gigs dl > div,
+        .gigs dt,
+        .gigs dd {
+            display: inline-block;
+            margin: 0;
+        }
+
+        .gigs dl > div {
+            margin-right: .5em;
+        }
+
+        .gigs dt,
+        .gigs dd a {
+            white-space: nowrap;
+        }
+
+        .gigs dt {
+            font-style: italic;
+        }
+
+            .gigs dt::after {
+                content: ':';
+            }
+
+            .gigs a {
+                margin: 0;
+            }
+
+        .past-gigs time {
+            font-weight: 700;
+        }
+
+        .past-gigs p {
+            font-size: .875rem;
+        }
+
+    .gigs ol,
+    .gigs li:nth-child(n + 2),
+    .gigs dl,
     .line-up table,
     .line-up tr {
         margin-top: .333em;
