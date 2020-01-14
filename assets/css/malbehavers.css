@@ -11,6 +11,21 @@
     font-style: normal;
 }
 
+[data-hide] {
+    display: none !important;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
 *,
 *::before,
 *::after {
@@ -38,7 +53,7 @@ body {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 8.5vw;
     font-weight: 700;
 }
 
@@ -155,8 +170,18 @@ main {
 
     h1 .small {
         display: block;
-        font-size: .5em;
+        font-size: 1.25rem;
         font-weight: 500;
+        margin: 0;
+    }
+
+    .music h3 {
+        font-size: 1em;
+    }
+
+    .music audio {
+        width: 100%;
+        border-radius: 0.444em;
     }
 
     .gigs > svg {
@@ -164,16 +189,18 @@ main {
     }
 
 /* --- temp ----- */
-    .gigs h2,
-    .past-gigs {
+    .gigs h2 {
         display: none;
     }
 
-    .upcoming-gigs h3 {
-        font-size: 1.5em;
+    .upcoming-gigs h3,
+    .past-gigs h3 {
+        font-size: 2em;
     }
 /* --- /temp ---- */
 
+    .music article,
+    .music audio,
     .gigs ol,
     .gigs p,
     .gigs dl,
@@ -235,6 +262,8 @@ main {
             font-size: .875rem;
         }
 
+    .music article,
+    .music audio,
     .gigs ol,
     .gigs li:nth-child(n + 2),
     .gigs dl,
@@ -369,6 +398,12 @@ main {
     .bg-copyright a:active {
         color: #e3e9eb;
     }
+
+@media (min-width: 434px) {
+    h1 {
+        font-size: 2em;
+    }
+}
 
 @media (min-width: 580px) {
     .site-wrapper {
