@@ -50,6 +50,10 @@ body {
     background-size: cover;
 }
 
+body > svg {
+    display: none;
+}
+
 h1 {
     font-size: 8.5vw;
     font-weight: 700;
@@ -119,24 +123,40 @@ ol {
     font-size: .75em;
 }
 
-.link-map span {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
-    clip: rect(0 0 0 0);
+.link-spotify,
+.link-map {
+    font-size: 1rem;
 }
 
-.link-map svg {
-    vertical-align: text-bottom;
-    fill: currentColor;
-    width: auto;
-    height: 1.125em;
-    opacity: .9;
-}
+    .link-spotify span,
+    .link-map span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+        clip: rect(0 0 0 0);
+    }
+
+    .link-spotify svg,
+    .link-map svg {
+        position: relative;
+        fill: currentColor;
+        width: auto;
+        height: 1.125em;
+        opacity: .9;
+    }
+
+    .link-spotify svg {
+        top: .0625em;
+        height: .875em;
+    }
+
+    .link-map svg {
+        top: .25em;
+    }
 
 .site-wrapper {
     max-width: 1040px;
@@ -199,10 +219,6 @@ main {
         .music audio {
             width: 100%;
             border-radius: 0.444em;
-        }
-
-        .gigs > svg {
-            display: none;
         }
 
         .gigs ol,
