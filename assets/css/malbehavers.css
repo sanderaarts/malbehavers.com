@@ -350,32 +350,37 @@ main {
             padding-left: 25px;
         }
 
-            .line-up tbody th::before {
-                content: '';
+        .line-up .is-js-enhanced th {
+            pointer-events: none;
+        }
+
+            .line-up tbody svg {
                 position: absolute;
                 left: 0;
                 top: .3125rem;
                 display: block;
-                width: 16px;
-                height: 16px;
-                background: url('../img/sprite-bullets.png') -128px 0 no-repeat scroll transparent;
-                background-size: 64px;
+                width: .9375rem;
+                height: 1rem;
             }
 
-            .line-up tr:first-child th::before {
-                background-position-x: 0;
+            .line-up .is-js-enhanced svg {
+                stroke: #000;
+                stroke-width: 2%;
+                pointer-events: all;
+                cursor: pointer;
             }
 
-            .line-up tr:nth-child(2) th::before {
-                background-position-x: -16px;
+            .line-up .playing tr:nth-child(2) svg,
+            .line-up .paused tr:nth-child(3) svg {
+                fill: #fff;
             }
 
-            .line-up tr:nth-child(3) th::before {
-                background-position-x: -32px;
+            .line-up .is-js-enhanced th:hover svg {
+                fill: #295266;
             }
 
-            .line-up tr:nth-child(4) th::before {
-                background-position-x: -48px;
+            .line-up .is-js-enhanced tr:nth-child(1) th:hover svg {
+                fill: #991423;
             }
 
         .line-up td:empty {
