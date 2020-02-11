@@ -54,11 +54,6 @@ body > svg {
     display: none;
 }
 
-main {
-    /* IE needs some help */
-    display: block;
-}
-
 h1 {
     font-size: 8.5vw;
     font-weight: 700;
@@ -183,6 +178,7 @@ ol {
     }
 
 main {
+    display: block;
     max-width: 100%;
     margin: 0 auto;
     padding: 1em 20px;
