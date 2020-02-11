@@ -1,0 +1,204 @@
+/* --- player-controls.css ----- */
+
+body {
+    overflow-y: scroll;
+}
+
+.show-backdrop {
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+.line-up .is-js-enhanced th {
+    pointer-events: none;
+}
+
+    .line-up .is-js-enhanced svg {
+        stroke: #000;
+        stroke-width: 2%;
+        pointer-events: all;
+        cursor: pointer;
+    }
+
+    .line-up .playing tr:nth-child(2) svg,
+    .line-up .paused tr:nth-child(3) svg {
+        fill: #fff;
+    }
+
+    .line-up .is-js-enhanced th:hover svg {
+        fill: #295266;
+    }
+
+    .line-up .is-js-enhanced tr:nth-child(1) th:hover svg {
+        fill: #991423;
+    }
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    transform: translateX(-100%);
+    transition: transform .25s step-start 0;
+}
+
+.show-backdrop .backdrop {
+    transform: translateX(0);
+    transition: transform 0 step-start .25s;
+}
+
+    .backdrop::before {
+        content: '';
+        flex: auto;
+        background-color: rgba(0, 0, 0, .5);
+        opacity: 0;
+        transition: opacity .25s;
+    }
+
+    .show-backdrop .backdrop::before {
+        opacity: 1;
+    }
+
+.answering-machine {
+    display: none;
+}
+
+.show-modal .answering-machine {
+    position: fixed;
+    top: 0;
+    bottom: 2rem;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    pointer-events: none;
+}
+
+    .answering-machine .modal {
+        flex: initial;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        width: 85%;
+        max-width: 28.75rem;
+        max-height: 100%;
+        padding: 1.5em 1rem 1em;
+        background-color: #fff;
+        border-radius: .444em;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+        pointer-events: all;
+    }
+
+        .answering-machine h2 {
+            flex: none;
+            font-size: 1.25em;
+            font-weight: 700;
+            text-align: center;
+            width: 100%;
+        }
+
+            .answering-machine svg {
+                display: block;
+                width: 1.125em;
+                height: 1.2em;
+                margin: 0 auto .5em;
+                fill: #991423;
+                stroke: #000;
+                stroke-width: 2%;
+            }
+
+            .show-modal .answering-machine svg {
+                animation: .75s ease-in-out infinite alternate blink;
+            }
+
+            .answering-machine button {
+                flex: initial;
+                font-size: 1.25rem;
+                text-transform: uppercase;
+                color: #295266;
+                width: 50%;
+                max-width: 5em;
+                margin: 1.5em 0 0;
+                padding: .25em;
+                background-color: transparent;
+                border: none;
+            }
+
+            .answering-machine button:focus,
+            .answering-machine button:hover,
+            .answering-machine button:active {
+                color: #000;
+                text-decoration: underline;
+            }
+
+@media (min-width: 420px) {
+    .answering-machine {
+        font-size: .9333em;
+    }
+
+        .answering-machine h2 {
+            font-size: 1em;
+        }
+
+            .answering-machine h2 br {
+                display: none;
+            }
+
+        .answering-machine button {
+            font-size: 1rem;
+        }
+}
+
+@media (min-width: 450px) {
+    .answering-machine h2::before {
+        content: '“';
+    }
+
+    .answering-machine h2::after {
+        content: '”';
+    }
+}
+
+@media (min-width: 540px) {
+    .answering-machine {
+        font-size: 1em;
+    }
+
+        .answering-machine .modal {
+            justify-content: flex-end;
+            position: relative;
+        }
+
+            .answering-machine svg {
+                position: absolute;
+                left: 1em;
+                top: 1.8em;
+                width: .75em;
+                height: .8em;
+                margin: 0;
+            }
+
+            .answering-machine h2 {
+                font-size: 1.25rem;
+                padding-left: 1.25em
+            }
+
+            .answering-machine button:last-of-type {
+                margin-right: -1rem;
+                padding-left: .75em;
+            }
+}
+
+@keyframes blink {
+  from {
+    fill: #991423;
+  }
+
+  to {
+    fill: #000;
+  }
+}

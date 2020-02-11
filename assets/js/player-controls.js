@@ -12,14 +12,22 @@ void function() {
         STOPPED: 3,
     };
     var currentState = 0;
-    var className = {
-        play:  'playing',
-        pause: 'paused',
+    var classNames = {
+        play:         'playing',
+        pause:        'paused',
+        showBackdrop: 'show-backdrop',
+        showModal:    'show-modal',
     }
+    var body = document.body;
     var song = audio.item(0);
     var controlsContainer = document.querySelector('.line-up tbody');
     var handlers = [function() {}, onRecord, onPlay, onPause, onStop];
+    var mailLink = document.querySelector('.contact a[href^="mailto:"]');
+    var scrollPosition = 0;
 
+    if (mailLink) {
+        insertModal(classNames);
+    }
     song.addEventListener('play', setPlayState, false);
     song.addEventListener('playing', setPlayState, false);
     song.addEventListener('pause', setPauseState, false);
@@ -54,12 +62,9 @@ void function() {
      * @desc    Handle clicking the record control.
      */
     function onRecord() {
-        var mailLink = document.querySelector('.contact a[href^="mailto:"]');
-        var msg = '"Please leave an email after this note…"';
-
-        if (mailLink && confirm(msg)) {
-            location.href = mailLink.href;
-        }
+        scrollPosition = window.pageYOffset;
+        body.style.top = -scrollPosition + 'px';
+        body.classList.add(classNames.showModal, classNames.showBackdrop);
     }
 
     /**
@@ -96,8 +101,8 @@ void function() {
      */
     function setPlayState() {
         currentState = state.PLAYING;
-        controlsContainer.classList.add(className.play);
-        controlsContainer.classList.remove(className.pause);
+        controlsContainer.classList.add(classNames.play);
+        controlsContainer.classList.remove(classNames.pause);
     }
 
     /**
@@ -105,12 +110,12 @@ void function() {
      */
     function setPauseState() {
         if (currentState === state.STOPPED) {
-            controlsContainer.classList.remove(className.pause);
+            controlsContainer.classList.remove(classNames.pause);
         } else {
             currentState = state.PAUSED;
-            controlsContainer.classList.add(className.pause);
+            controlsContainer.classList.add(classNames.pause);
         }
-        controlsContainer.classList.remove(className.play);
+        controlsContainer.classList.remove(classNames.play);
     }
 
     /**
@@ -119,5 +124,145 @@ void function() {
     function setStopState() {
         currentState = state.STOPPED;
         setPauseState();
+    }
+
+    /**
+     * @desc    Insert 'Leave a message' modal.
+     * @param   {Object} classNames - Class names
+     */
+    function insertModal(classNames) {
+        var head = document.querySelector('head');
+        var stylesheet = getStylesheet();
+
+        stylesheet.addEventListener('load', onLoad, false);
+        head.appendChild(stylesheet);
+
+        /**
+         * @desc    Get stylesheet element.
+         * @returns {HTMLLinkElement} Link element
+         */
+        function getStylesheet() {
+            var stylesheet = document.createElement('link');
+
+            stylesheet.setAttribute('rel', 'stylesheet');
+            stylesheet.setAttribute('href', 'assets/css/player-controls.css');
+            return stylesheet;
+        }
+
+        /**
+         * @desc    Handle stylesheet being loaded.
+         */
+        function onLoad() {
+            var backdrop = getBackdrop();
+
+            backdrop.addEventListener('click', close, false);
+            body.appendChild(backdrop);
+            body.appendChild(getAnsweringMachine());
+        }
+
+        /**
+         * @desc    Follow mailto link.
+         */
+        function leaveMessage() {
+            close();
+            location.href = mailLink.href;
+        }
+
+        /**
+         * @desc    Close modal.
+         */
+        function close() {
+            body.classList.remove(classNames.showModal, classNames.showBackdrop);
+            window.scrollTo(0, scrollPosition);
+            body.style.top = 0;
+        }
+
+        /**
+         * @desc    Get backdrop element.
+         * @returns {HTMLDivElement} Div element
+         */
+        function getBackdrop() {
+            var backdrop = document.createElement('div');
+
+            backdrop.classList.add('backdrop');
+            return backdrop;
+        }
+
+        /**
+         * @desc    Get answering machine element.
+         * @returns {HTMLElement} Section element
+         */
+        function getAnsweringMachine() {
+            var answeringMachine = document.createElement('section');
+
+            answeringMachine.classList.add('answering-machine');
+            answeringMachine.appendChild(getModal());
+            return answeringMachine;
+        }
+
+        /**
+         * @desc    Get modal element.
+         * @returns {HTMLDivElement} Div element
+         */
+        function getModal() {
+            var modal = document.createElement('div');
+            var cancelButton = getButton('cancel');
+            var okButton = getButton('ok');
+
+            modal.classList.add('modal');
+            modal.appendChild(getRecordIcon());
+            modal.appendChild(getHeader());
+            cancelButton.addEventListener('click', close, false);
+            okButton.addEventListener('click', leaveMessage, false);
+            modal.appendChild(cancelButton);
+            modal.appendChild(okButton);
+            return modal;
+        }
+
+        /**
+         * @desc    Get record icon element.
+         * @returns {SVGElement} Svg element
+         */
+        function getRecordIcon() {
+            var svg = document.querySelector('.line-up tbody tr:first-child svg');
+
+            return svg.cloneNode(true);
+        }
+
+        /**
+         * @desc    Get header element.
+         * @returns {HTMLHeadingElement} H2 element
+         */
+        function getHeader() {
+            var header = document.createElement('h2');
+
+            header.appendChild(document.createTextNode('Please leave an email'));
+            header.appendChild(document.createElement('br'));
+            header.appendChild(document.createTextNode(' after this note…'));
+            return header;
+        }
+
+        /**
+         * @desc    Get button element.
+         * @returns {HTMLButtonElement} Button element
+         */
+        function getButton(type) {
+            var data = {
+                cancel: {
+                    className: 'cancel',
+                    label:     'Cancel',
+                },
+                ok: {
+                    className: 'ok',
+                    label:     'OK',
+                },
+            }[type];
+            var button = document.createElement('button');
+
+            button.setAttribute('type', 'button');
+            button.classList.add(data.className);
+            button.appendChild(document.createTextNode(data.label));
+            return button;
+        }
     }
 }();

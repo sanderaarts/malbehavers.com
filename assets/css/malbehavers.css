@@ -82,6 +82,18 @@ a:active {
     outline: none;
 }
 
+button {
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+button::-moz-focus-inner {
+    border: none;
+}
+
 abbr {
     text-decoration: none;
 }
@@ -348,40 +360,16 @@ main {
             position: relative;
             float: left;
             font-weight: 700;
-            padding-left: 25px;
-        }
-
-        .line-up .is-js-enhanced th {
-            pointer-events: none;
+            padding-left: 1.25em;
         }
 
             .line-up tbody svg {
                 position: absolute;
                 left: 0;
-                top: .3125rem;
+                top: .25em;
                 display: block;
-                width: .9375rem;
-                height: 1rem;
-            }
-
-            .line-up .is-js-enhanced svg {
-                stroke: #000;
-                stroke-width: 2%;
-                pointer-events: all;
-                cursor: pointer;
-            }
-
-            .line-up .playing tr:nth-child(2) svg,
-            .line-up .paused tr:nth-child(3) svg {
-                fill: #fff;
-            }
-
-            .line-up .is-js-enhanced th:hover svg {
-                fill: #295266;
-            }
-
-            .line-up .is-js-enhanced tr:nth-child(1) th:hover svg {
-                fill: #991423;
+                width: .75em;
+                height: .8em;
             }
 
         .line-up td:empty {
