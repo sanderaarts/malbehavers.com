@@ -182,8 +182,8 @@ main {
     max-width: 100%;
     margin: 0 auto;
     padding: 1em 20px;
-    background-color: rgba(255, 255, 255, 0.75);
-    border-radius: 0.444em;
+    background-color: rgba(255, 255, 255, .75);
+    border-radius: .444em;
 }
 
     h1 .small {
@@ -219,7 +219,7 @@ main {
 
         .music audio {
             width: 100%;
-            border-radius: 0.444em;
+            border-radius: .444em;
         }
 
         .gigs ol,
