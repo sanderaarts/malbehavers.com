@@ -136,12 +136,14 @@ ol {
 }
 
 .link-spotify,
-.link-map {
+.link-map,
+.link-film {
     font-size: 1rem;
 }
 
     .link-spotify span,
-    .link-map span {
+    .link-map span,
+    .link-film span {
         position: absolute;
         width: 1px;
         height: 1px;
@@ -153,7 +155,8 @@ ol {
     }
 
     .link-spotify svg,
-    .link-map svg {
+    .link-map svg,
+    .link-film svg {
         position: relative;
         fill: currentColor;
         width: auto;
@@ -166,7 +169,8 @@ ol {
         height: .875em;
     }
 
-    .link-map svg {
+    .link-map svg,
+    .link-film svg {
         top: .25em;
     }
 
@@ -290,6 +294,12 @@ main {
 
             .upcoming-gigs h3 {
                 display: none;
+            }
+
+            .past-gigs time,
+            .past-gigs .gig-location,
+            .past-gigs .grouped-data {
+                display: inline-block;
             }
 
             .past-gigs time {
