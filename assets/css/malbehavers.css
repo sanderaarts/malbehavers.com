@@ -416,57 +416,58 @@ main {
     }
 
 .site-footer {
-    display: flex;
-    flex-flow: row-reverse nowrap;
-    justify-content: space-between;
-    align-items: center;
     margin: .6667em 0 2rem;
 }
 
     .social-media {
         display: flex;
         flex-flow: row nowrap;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
-        line-height: 20px;
-        height: 20px;
+        margin: 0 0 1.5rem;
     }
 
-        .social-media li {
-            margin: 0 0 0 .4em;
+        .social-media a {
+            display: block;
+            color: #fff;
+            width: 2rem;
+            height: 2rem;
+            background: none center no-repeat scroll #295266;
+            background-size: 1.6667rem;
+            border-radius: .2222em;
         }
 
-            .social-media a {
-                display: block;
-                color: #fff;
-                width: 1.25rem;
-                height: 1.25rem;
-                background: none center no-repeat scroll #295266;
-                background-size: 1rem;
-                border-radius: .125em;
-            }
+        .bandcamp a {
+            background-image: url('../img/logo-bandcamp.svg');
+        }
 
-            .bandcamp a {
-                background-image: url('../img/logo-bandcamp.svg');
-            }
+        .facebook a {
+            background-image: url('../img/logo-facebook.svg');
+        }
 
-            .facebook a {
-                background-image: url('../img/logo-facebook.svg');
-            }
+        .instagram a {
+            background-image: url('../img/logo-instagram.svg');
+        }
 
-            .instagram a {
-                background-image: url('../img/logo-instagram.svg');
-            }
+        .twitter a {
+            background-image: url('../img/logo-twitter.svg');
+        }
 
-            .twitter a {
-                background-image: url('../img/logo-twitter.svg');
-            }
+        .vibe a {
+            background-image: url('../img/logo-vibe.svg');
+            background-size: 1.3333rem;
+        }
 
-            .social-media a:focus,
-            .social-media a:hover,
-            .social-media a:active {
-                background-color: #000;
-            }
+        .youtube a {
+            background-image: url('../img/logo-youtube.svg');
+            background-size: 1.3333rem;
+        }
+
+        .social-media a:focus,
+        .social-media a:hover,
+        .social-media a:active {
+            background-color: #000;
+        }
 
 .bg-copyright {
     float: left;
@@ -487,18 +488,6 @@ main {
     .photographer a:active {
         color: #e3e9eb;
     }
-
-@media (min-width: 360px) {
-    .social-media li {
-        margin-left: .5em;
-    }
-
-        .social-media a {
-            width: 1.5rem;
-            height: 1.5rem;
-            background-size: 1.25rem;
-        }
-}
 
 @media (min-width: 420px) {
     html {
@@ -532,6 +521,24 @@ main {
     h1 {
         font-size: 2.5rem;
     }
+}
+
+@media (min-width: 500px) {
+    .site-footer {
+        display: flex;
+        flex-flow: row-reverse nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .social-media {
+            justify-content: flex-end;
+            margin: 0;
+        }
+
+            .social-media li {
+                margin-left: .5em;
+            }
 }
 
 @media (min-width: 580px) {
