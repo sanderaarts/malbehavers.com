@@ -1,0 +1,27 @@
+/* --- video.css ----- */
+
+.has-video {
+    position: relative;
+}
+
+    .has-video img {
+        cursor: pointer;
+    }
+
+    .has-video .play-icon {
+        position: absolute;
+        left: calc(50% - .75em);
+        bottom: calc(50% - .8em);
+        display: none;
+        width: 1.5em;
+        height: 1.6em;
+        stroke: #000;
+        stroke-width: 1%;
+        fill: #fff;
+        pointer-events: none;
+    }
+
+    .has-video img:focus ~ .play-icon,
+    .has-video img:hover ~ .play-icon {
+        display: block;
+    }
