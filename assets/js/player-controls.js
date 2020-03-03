@@ -224,7 +224,7 @@ void function() {
          * @returns {SVGElement} Svg element
          */
         function getRecordIcon() {
-            var svg = document.querySelector('.line-up tbody tr:first-child svg');
+            var svg = document.querySelector('.record-icon');
 
             return svg.cloneNode(true);
         }
