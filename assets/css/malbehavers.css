@@ -335,7 +335,7 @@ main {
                     opacity: 1;
                 }
 
-                    .canceled-message p {
+                    .canceled-message > div {
                         font-size: 1em;
                         text-align: center;
                         text-shadow: 0 0 15px #fff;
@@ -343,14 +343,17 @@ main {
                         transform: rotateZ(-30deg);
                     }
 
-                        .canceled-message p::before {
-                            content: 'Canceled';
+                        .canceled-message h5 {
                             display: block;
                             font-size: 1.5em;
                             font-weight: 700;
                             line-height: 1;
                             text-transform: uppercase;
                             color: #295266;
+                        }
+
+                        .canceled-message p {
+                            font-size: inherit;
                         }
 
     .band-pic {
