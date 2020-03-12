@@ -310,6 +310,49 @@ main {
                 font-size: .875rem;
             }
 
+        .canceled {
+            position: relative;
+        }
+
+            .canceled > * {
+                opacity: .4;
+            }
+
+            .canceled h4 {
+                opacity: .6;
+            }
+
+                .canceled-message {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 2;
+                    opacity: 1;
+                }
+
+                    .canceled-message p {
+                        font-size: 1em;
+                        text-align: center;
+                        text-shadow: 0 0 15px #fff;
+                        transform-origin: center;
+                        transform: rotateZ(-30deg);
+                    }
+
+                        .canceled-message p::before {
+                            content: 'Canceled';
+                            display: block;
+                            font-size: 1.5em;
+                            font-weight: 700;
+                            line-height: 1;
+                            text-transform: uppercase;
+                            color: #295266;
+                        }
+
     .band-pic {
         position: relative;
     }
