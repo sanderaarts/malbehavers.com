@@ -10,18 +10,52 @@
 
     .has-video .play-icon {
         position: absolute;
-        left: calc(50% - .75em);
-        bottom: calc(50% - .8em);
-        display: none;
-        width: 1.5em;
-        height: 1.6em;
+        right: 5px;
+        bottom: 3px;
+        width: 1.125em;
+        height: 1.2em;
         stroke: #000;
         stroke-width: 1%;
         fill: #fff;
         pointer-events: none;
     }
 
+    .band-pic.has-video .photographer {
+        left: 5px;
+        right: auto;
+    }
+
+@media (hover: hover) {
+    .has-video .play-icon {
+        fill: #295266;
+    }
+
     .has-video img:focus ~ .play-icon,
     .has-video img:hover ~ .play-icon {
-        display: block;
+        fill: #fff;
     }
+}
+
+@media (min-width: 420px) {
+    .has-video .play-icon {
+        right: 10px;
+        bottom: 10px;
+        width: 1.5em;
+        height: 1.6em;
+    }
+
+    .band-pic.has-video .photographer {
+        left: 10px;
+        bottom: 5px;
+    }
+}
+
+@media (min-width: 720px) {
+    .has-video .play-icon {
+        right: 25px;
+    }
+
+    .band-pic.has-video .photographer {
+        left: 25px;
+    }
+}

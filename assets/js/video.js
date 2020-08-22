@@ -5,6 +5,7 @@ void function() {
         return;
     }
 
+    var hideAttribute = 'data-hide';
     var hasVideoClassName = 'has-video';
     var youtubeReady = false;
     var videos = {
@@ -85,8 +86,8 @@ void function() {
                 var iframe = videos.youtube.elements[id];
 
                 if (event.data === YT.PlayerState.ENDED) {
-                    element.removeAttribute('data-hide');
-                    iframe.setAttribute('data-hide', '');
+                    element.removeAttribute(hideAttribute);
+                    iframe.setAttribute(hideAttribute, '');
                     player.stopVideo();
                 }
             }
@@ -160,8 +161,8 @@ void function() {
             video.classList.remove(hasVideoClassName);
             element.insertAdjacentElement('afterend', video);
         } else {
-            video.removeAttribute('data-hide');
+            video.removeAttribute(hideAttribute);
         }
-        element.setAttribute('data-hide', '');
+        element.setAttribute(hideAttribute, '');
     }
 }();
