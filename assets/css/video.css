@@ -12,6 +12,7 @@
         position: absolute;
         right: 5px;
         bottom: 3px;
+        display: block;
         width: 1.125em;
         height: 1.2em;
         stroke: #000;

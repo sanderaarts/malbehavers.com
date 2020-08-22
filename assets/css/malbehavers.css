@@ -158,6 +158,7 @@ ol {
     .link-map svg,
     .link-film svg {
         position: relative;
+        display: inline-block;
         fill: currentColor;
         width: auto;
         height: 1.125em;
