@@ -5,8 +5,10 @@ void function() {
         return;
     }
 
+    var activePlayer;
     var hideAttribute = 'data-hide';
     var hasVideoClassName = 'has-video';
+    var malbehaversPlayEvent = 'malbehaversplay';
     var youtubeReady = false;
     var videos = {
         youtube: {
@@ -17,6 +19,7 @@ void function() {
     };
 
     document.querySelectorAll('[data-youtube-id]').forEach(initVideo);
+    body.addEventListener(malbehaversPlayEvent, onMediaPlay, false);
 
     /**
      * @desc    Initialize video.
@@ -67,7 +70,7 @@ void function() {
                 });
                 videos.youtube.players[id] = player;
             } else {
-                player.playVideo();
+                onReady();
             }
 
             /**
@@ -83,13 +86,40 @@ void function() {
              * @param   {Event} event - Event data
              */
             function onStateChange(event) {
-                var iframe = videos.youtube.elements[id];
+                var iframe;
 
-                if (event.data === YT.PlayerState.ENDED) {
-                    element.removeAttribute(hideAttribute);
+                if (event.data === YT.PlayerState.PLAYING) {
+                    activePlayer = player;
+                    fireMalbehaversPlayEvent();
+                } else if (event.data === YT.PlayerState.ENDED) {
+                    iframe = videos.youtube.elements[id];
                     iframe.setAttribute(hideAttribute, '');
+                    element.removeAttribute(hideAttribute);
                     player.stopVideo();
+                    activePlayer = null;
                 }
+            }
+
+            /**
+             * @desc    Fire malbehaversplay event.
+             * @param   {}
+             */
+            function fireMalbehaversPlayEvent() {
+                var event;
+                var detail = {
+                    type:    'video',
+                    element: player.getIframe(),
+                };
+
+                if (typeof window.CustomEvent === 'function') {
+                    event = new CustomEvent(malbehaversPlayEvent, {
+                        detail: detail,
+                    });
+                } else {
+                    event = document.createEvent(malbehaversPlayEvent);
+                    event.initCustomEvent(malbehaversPlayEvent, false, false, detail);
+                }
+                body.dispatchEvent(event);
             }
         }
     }
@@ -164,5 +194,16 @@ void function() {
             video.removeAttribute(hideAttribute);
         }
         element.setAttribute(hideAttribute, '');
+    }
+
+    /**
+     * @desc    Handle media starting/resuming to be played.
+     * @param   {Event} event - Event data (type: malbehaversplay)
+     */
+    function onMediaPlay(event) {
+        if (activePlayer && event.detail.element !== activePlayer.getIframe()) {
+            activePlayer.pauseVideo();
+            activePlayer = null;
+        }
     }
 }();

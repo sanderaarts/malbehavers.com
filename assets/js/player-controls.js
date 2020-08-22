@@ -23,6 +23,7 @@ void function() {
     var controlsContainer = document.querySelector('.line-up tbody');
     var handlers = [function() {}, onRecord, onPlay, onPause, onStop];
     var mailLink = document.querySelector('.contact a[href^="mailto:"]');
+    var malbehaversPlayEvent = 'malbehaversplay';
     var scrollPosition = 0;
 
     if (mailLink) {
@@ -33,6 +34,7 @@ void function() {
     song.addEventListener('pause', setPauseState, false);
     song.addEventListener('ended', setStopState, false);
     controlsContainer.addEventListener('click', onClick, false);
+    body.addEventListener(malbehaversPlayEvent, onMediaPlay, false);
     controlsContainer.classList.add('is-js-enhanced');
 
     /**
@@ -97,10 +99,21 @@ void function() {
     }
 
     /**
+     * @desc    Handle media starting/resuming to be played.
+     * @param   {Event} event - Event data (type: malbehaversplay)
+     */
+    function onMediaPlay(event) {
+        if (event.detail.element !== song) {
+            song.pause();
+        }
+    }
+
+    /**
      * @desc    Set play state.
      */
     function setPlayState() {
         currentState = state.PLAYING;
+        fireMalbehaversPlayEvent();
         controlsContainer.classList.add(classNames.play);
         controlsContainer.classList.remove(classNames.pause);
     }
@@ -124,6 +137,27 @@ void function() {
     function setStopState() {
         currentState = state.STOPPED;
         setPauseState();
+    }
+
+    /**
+     * @desc    Fire malbehaversplay event.
+     */
+    function fireMalbehaversPlayEvent() {
+        var event;
+        var detail = {
+            type:    'audio',
+            element: song,
+        };
+
+        if (typeof window.CustomEvent === 'function') {
+            event = new CustomEvent(malbehaversPlayEvent, {
+                detail: detail,
+            });
+        } else {
+            event = document.createEvent(malbehaversPlayEvent);
+            event.initCustomEvent(malbehaversPlayEvent, false, false, detail);
+        }
+        body.dispatchEvent(event);
     }
 
     /**
